@@ -111,7 +111,12 @@
             const query = document.getElementById('search-input').value.trim().toLowerCase();
             const resultDiv = document.getElementById('result');
 
-            if (query === 'savnede elev') {
+            if (query === 'forsvundet elev') {
+                errorSound.play();
+                resultDiv.innerHTML = `
+                    Mente du 'Savnede elev'?</a>
+                `;
+            } else if (query === 'savnede elev') {
                 successSound.play();
                 resultDiv.innerHTML = `
                     <a href="savnede-elev.html" class="article">
@@ -119,9 +124,6 @@
                         <div>Savnede elev - Viborg Katedralskole</div>
                     </a>
                 `;
-            } else if (query === 'Forsvundet elev') {
-                errorSound.play();
-                resultDiv.textContent = 'Mente du "Savnede elev"?';
             } else {
                 errorSound.play();
                 resultDiv.textContent = 'Ingen resultat';
