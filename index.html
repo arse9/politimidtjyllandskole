@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politiarkiv Midtjylland</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            max-width: 150px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .search-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .search-bar {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 0;
+            margin-bottom: 10px;
+            outline: none;
+        }
+
+        .search-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #0056a6;
+            color: #fff;
+            border: none;
+            border-radius: 0;
+            cursor: pointer;
+        }
+
+        .search-button:hover {
+            background-color: #003d7e;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .article {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 0;
+            padding: 10px;
+            margin-top: 10px;
+            max-width: 400px;
+            text-decoration: none;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        .article img {
+            width: 60px;
+            height: 60px;
+            border-radius: 0;
+            margin-right: 10px;
+        }
+
+        .article:hover {
+            background-color: #e9e9e9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-Fbr98qrwuvkf6Z0U_CrDG8_BcgwtDr18BA&s" alt="Danish Police Logo">
+        <h1>Politiarkiv Midtjylland</h1>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="search-input" class="search-bar" placeholder="Søg efter sager...">
+        <button id="search-button" class="search-button">Søg</button>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        const errorSound = new Audio('sounds/error.mp3');
+        const successSound = new Audio('sounds/success.mp3');
+
+        document.getElementById('search-button').addEventListener('click', function() {
+            const query = document.getElementById('search-input').value.trim().toLowerCase();
+            const resultDiv = document.getElementById('result');
+
+            if (query === 'savnede elev') {
+                successSound.play();
+                resultDiv.innerHTML = `
+                    <a href="savnede-elev.html" class="article">
+                        <img src="https://via.placeholder.com/60" alt="Case Thumbnail">
+                        <div>Savnede elev - Viborg Katedralskole</div>
+                    </a>
+                `;
+            } else if (query === 'Forsvundet elev') {
+                errorSound.play();
+                resultDiv.textContent = 'Mente du "Savnede elev"?';
+            } else {
+                errorSound.play();
+                resultDiv.textContent = 'Ingen resultat';
+            }
+        });
+    </script>
+</body>
+</html>
